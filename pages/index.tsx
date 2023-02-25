@@ -13,16 +13,23 @@ export default function Home({}) {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a> v
-          {nextPackage.version}
-        </h1>
+        <h1 className={styles.title}>list</h1>
+        <ul>
+          <li>
 
-        <p className={styles.description}>
-          Get started by editing{" "}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
+          </li>
+        </ul>
       </main>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts/1')
+
+  const posts = await res.json();
+
+  return {
+    props: {posts},
+  };
 }
